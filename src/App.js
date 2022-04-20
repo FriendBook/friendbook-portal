@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Friends from "./Friends/Friends";
 import Navbar from "./Navbar";
 import PostPage from "./Posts/PostPage";
 import Users from "./Users/Users";
@@ -17,6 +18,9 @@ const App = () => {
           } />
           <Route path="/users" element={
             <Users />
+          } />
+          <Route path="/friends" element={
+            <Friends />
           } />
         </Routes>
       </div>

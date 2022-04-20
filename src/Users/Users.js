@@ -19,7 +19,7 @@ const Users = () => {
       <div
         className="card"
         style={{ width: "30%", marginBottom: "20px" }}
-        key={user.id}
+        key={user.name}
       >
         <div className="card-body">
           <h3>{user.name}</h3>

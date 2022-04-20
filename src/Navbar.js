@@ -2,12 +2,12 @@ import React from "react";
 
 const Navbar = () => {
   return (
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">
+    <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <a className="navbar-brand" href="/posts">
         Navbar
       </a>
       <button
-        class="navbar-toggler"
+        className="navbar-toggler"
         type="button"
         data-toggle="collapse"
         data-target="#navbarNavAltMarkup"
@@ -15,15 +15,18 @@ const Navbar = () => {
         aria-expanded="false"
         aria-label="Toggle navigation"
       >
-        <span class="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon"></span>
       </button>
-      <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
-        <div class="navbar-nav">
-          <a class="nav-item nav-link" href="/posts">
-            Posts <span class="sr-only"></span>
+      <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
+        <div className="navbar-nav">
+          <a className="nav-item nav-link" href="/posts">
+            Posts <span className="sr-only"></span>
           </a>
-          <a class="nav-item nav-link" href="/users">
+          <a className="nav-item nav-link" href="/users">
             Users
+          </a>
+          <a className="nav-item nav-link" href="/friends">
+            Friends
           </a>
         </div>
       </div>

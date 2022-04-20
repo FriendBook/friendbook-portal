@@ -19,7 +19,7 @@ const PostList = ({postCounter}) => {
       <div
         className="card"
         style={{ width: "30%", marginBottom: "20px" }}
-        key={post.id}
+        key={post.title}
       >
         <div className="card-body">
           <h3>{post.title}</h3>
