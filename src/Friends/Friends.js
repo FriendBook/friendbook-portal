@@ -6,9 +6,10 @@ const Friends = () => {
   const [tempUser, setTempUser] = useState(1);
 
   const fetchFriends = async () => {
+    axios.get("http://localhost:4000/usr/frnd/" + tempUser);
     const res = await axios.get("http://localhost:8082/friends/" + tempUser);
 
-    console.log(res.data)
+    console.log(res);
     setFriends(res.data);
   };
 
@@ -18,27 +19,25 @@ const Friends = () => {
 
   const renderFriends = Object.values(friends).map((friend) => {
     return (
-        <div
-          className="card"
-          style={{ width: "30%", marginBottom: "20px" }}
-          key={friend.name}
-        >
-          <div className="card-body">
-            <h3>{friend.name}</h3>
-            <label>{friend.bio}</label>
-          </div>
+      <div
+        className="card"
+        style={{ width: "30%", marginBottom: "20px" }}
+        key={friend.name}
+      >
+        <div className="card-body">
+          <h3>{friend.name}</h3>
+          <label>{friend.bio}</label>
         </div>
-      );
-  }
-  );
-
+      </div>
+    );
+  });
 
   return (
-      <div>
-          <h3>Friends of user {tempUser}</h3>
-    <div className="d-flex flex-row flex-wrap justify-content-between">
+    <div>
+      <h3>Friends of user {tempUser}</h3>
+      <div className="d-flex flex-row flex-wrap justify-content-between">
         {renderFriends}
-    </div>
+      </div>
     </div>
   );
 };
