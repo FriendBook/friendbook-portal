@@ -5,7 +5,7 @@ const Users = () => {
   const [users, setUsers] = useState({});
 
   const fetchUsers = async () => {
-    const res = await axios.get("http://friendbook.com/usr");
+    const res = await axios.get("http://friendbook.com/api/usr");
 
     setUsers(res.data.users);
   };

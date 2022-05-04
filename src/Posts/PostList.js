@@ -5,7 +5,7 @@ const PostList = ({postCounter}) => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://friendbook.com/msg");
+    const res = await axios.get("http://friendbook.com/api/msg");
 
     setPosts(res.data);
   };

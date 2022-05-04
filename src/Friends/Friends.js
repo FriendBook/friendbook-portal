@@ -7,8 +7,8 @@ const Friends = () => {
   
   useEffect(() => {
     async function fetchFriends() {
-      axios.get("http://friendbook.com/usr/frnd/" + tempUser);
-      const res = await axios.get("http://friendbook.com/friends/" + tempUser);
+      axios.get("http://friendbook.com/api/usr/frnd/1");
+      const res = await axios.get("http://friendbook.com/api/frnds/1");
   
       setFriends(res.data);
     }
