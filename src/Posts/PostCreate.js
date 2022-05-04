@@ -12,7 +12,7 @@ const PostCreate = ({postCounter, setPostCounter}) => {
     var time = currentDate.getHours() + ":" + currentDate.getMinutes() + ":" + currentDate.getSeconds();
     var userID = 1;
 
-    await axios.post("http://localhost:8081/msg", {
+    await axios.post("http://friendbook.com/msg", {
       title: title,
       message: message,
       userid: userID,

@@ -5,7 +5,7 @@ const PostList = ({postCounter}) => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await axios.get("http://localhost:8081/msg");
+    const res = await axios.get("http://friendbook.com/msg");
 
     setPosts(res.data);
   };

@@ -5,7 +5,7 @@ const Users = () => {
   const [users, setUsers] = useState({});
 
   const fetchUsers = async () => {
-    const res = await axios.get("http://localhost:4000/usr");
+    const res = await axios.get("http://friendbook.com/usr");
 
     setUsers(res.data.users);
   };
