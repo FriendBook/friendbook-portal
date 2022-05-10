@@ -1,15 +1,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-    name: "friendbook-f307"
-    labels:
-        app: "friendbook-f307"
+    name: portal-srv
 spec:
-    type: LoadBalancer
     ports:
     - port: 3000
       targetPort: 3000
       protocol: TCP
-      name: http
+      name: portal
     selector:
-        app: "friendbook-f307"
+        app: portal

@@ -1,19 +1,19 @@
 apiVersion : apps/v1
 kind: Deployment
 metadata:
-  name: "friendbook-f307"
+  name: portal-depl
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
-      app: "friendbook-f307"
+      app: portal
   template:
     metadata:
       labels:
-        app: "friendbook-f307"
+        app: portal
     spec:
       containers:
-        - name: "friendbook-f307"
+        - name: portal
           image: "friendbook.azurecr.io/friendbook"
           ports:
           - containerPort: 3000
