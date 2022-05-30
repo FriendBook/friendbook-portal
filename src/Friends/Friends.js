@@ -7,6 +7,8 @@ const Friends = () => {
   
   useEffect(() => {
     async function fetchFriends() {
+      //friendbook.com
+      //localhost:8082
       axios.get("http://friendbook.com/api/usr/frnd/1");
       const res = await axios.get("http://friendbook.com/api/frnds/1");
   

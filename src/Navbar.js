@@ -1,10 +1,13 @@
 import React from "react";
+import { useKeycloak } from "@react-keycloak/web";
 
 const Navbar = () => {
+  const { keycloak, initialized } = useKeycloak();
+
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="/posts">
-        Navbar
+      <a className="navbar-brand" href="/">
+        FriendBook
       </a>
       <button
         className="navbar-toggler"
@@ -30,6 +33,24 @@ const Navbar = () => {
           </a>
         </div>
       </div>
+      {!keycloak.authenticated && (
+        <button
+          type="button"
+          className="text-blue-800 btn btn-primary"
+          onClick={() => keycloak.login()}
+        >
+          Login
+        </button>
+      )}
+      {!!keycloak.authenticated && (
+        <button
+          type="button"
+          className="text-blue-800 btn btn-primary"
+          onClick={() => keycloak.logout()}
+        >
+          Logout ({keycloak.tokenParsed.preferred_username})
+        </button>
+      )}
     </nav>
   );
 };
