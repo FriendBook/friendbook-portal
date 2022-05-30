@@ -1,6 +1,6 @@
 import Keycloak from "keycloak-js";
 const keycloak = new Keycloak({
- url: "http://friendbook.com/auth/",
+ url: "http://localhost:8080/auth/",
  realm: "Friendbook",
  clientId: "react-auth",
 });
