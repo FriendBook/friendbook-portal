@@ -1,14 +1,15 @@
-import React from "react";
 import { useKeycloak } from "@react-keycloak/web";
+import React from "react";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
-  const { keycloak, initialized } = useKeycloak();
+  const { keycloak } = useKeycloak();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light">
-      <a className="navbar-brand" href="/">
+      <Link to={"/"} className="navbar-brand">
         FriendBook
-      </a>
+      </Link>
       <button
         className="navbar-toggler"
         type="button"
@@ -22,18 +23,24 @@ const Navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
         <div className="navbar-nav">
-          <a className="nav-item nav-link" href="/posts">
-            Posts <span className="sr-only"></span>
-          </a>
-          <a className="nav-item nav-link" href="/users">
-            Users
-          </a>
-          <a className="nav-item nav-link" href="/friends">
+          <Link to={"/posts"} className="nav-item nav-link">
+            Posts
+          </Link>
+          {keycloak.hasRealmRole("admin") ? (
+            <Link to={"/users"} className="nav-item nav-link">
+              Users
+            </Link>
+          ) : (
+            <Link to={"/user"} className="nav-item nav-link">
+              Profile
+            </Link>
+          )}
+          <Link to={"/friends"} className="nav-item nav-link">
             Friends
-          </a>
+          </Link>
         </div>
       </div>
-      {!keycloak.authenticated && (
+      {!keycloak.authenticated ? (
         <button
           type="button"
           className="text-blue-800 btn btn-primary"
@@ -41,15 +48,24 @@ const Navbar = () => {
         >
           Login
         </button>
-      )}
-      {!!keycloak.authenticated && (
-        <button
-          type="button"
-          className="text-blue-800 btn btn-primary"
-          onClick={() => keycloak.logout()}
-        >
-          Logout ({keycloak.tokenParsed.preferred_username})
-        </button>
+      ) : (
+        <div>
+          <button
+            style={{ marginRight: 10 }}
+            type="button"
+            className="text-blue-800 btn btn-primary"
+            onClick={() => keycloak.accountManagement()}
+          >
+            Edit email
+          </button>
+          <button
+            type="button"
+            className="text-blue-800 btn btn-primary"
+            onClick={() => keycloak.logout()}
+          >
+            Logout
+          </button>
+        </div>
       )}
     </nav>
   );
