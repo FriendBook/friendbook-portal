@@ -30,6 +30,9 @@ const PostCreate = ({ postCounter, setPostCounter, user }) => {
       time: time,
       title: title,
       message: message,
+    },
+    {
+      headers: { Authorization: `Bearer ${keycloak.token}` },
     });
 
     setTitle("");

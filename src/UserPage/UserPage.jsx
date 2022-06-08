@@ -14,7 +14,7 @@ export default function UserPage({ user, isCompromised }) {
   ];
   function deleteUser() {
     if (window.confirm("You are about to delete your account. Are you sure you want to proceed?")) {
-        axios.delete(`http://friendbook.com/api/usr/${keycloak.subject}`);
+        axios.delete(`http://localhost:4000/api/usr/${keycloak.subject}`);
         keycloak.logout();
     }
   }

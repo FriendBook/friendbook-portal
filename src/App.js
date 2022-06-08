@@ -17,39 +17,55 @@ const App = () => {
   const [user, setUser] = useState({});
   const [friends, setFriends] = useState({});
   const [userList, setUserList] = useState([]);
-  const [isCompromised, setIsCompromised] = useState(false)
-
+  const [isCompromised, setIsCompromised] = useState(false);
 
   useEffect(() => {
     const fetchUsers = async (isCompromised) => {
       //friendbook.com
       //localhost:4000
-      if(isCompromised) {
-        const frndsres = await axios.get(`http://friendbook.com/api/frnds/${keycloak.subject}`)
+      if (isCompromised) {
+        const frndsres = await axios.get(
+          `http://localhost:8082/api/frnds/${keycloak.subject}`,
+          {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          });
         setFriends(frndsres.data);
-      }
-      else {
-        const frndsres = await axios.get(`http://friendbook.com/api/frnds/${keycloak.subject}`)
+      } else {
+        const frndsres = await axios.get(
+          `http://localhost:8082/api/frnds/${keycloak.subject}`,
+          {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          });
         setFriends(frndsres.data);
-        const userListRes = await axios.get("http://friendbook.com/api/usr");
-        setUserList(userListRes);
-        const userRes = await axios.get(`http://friendbook.com/api/usr/${keycloak.subject}`);
+        const userRes = await axios.get(
+          `http://localhost:4000/api/usr/${keycloak.subject}`,
+          {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          });
         setUser(userRes.data.row[0]);
+        const userListRes = await axios.get("http://localhost:4000/api/usr",
+        {
+          headers: { Authorization: `Bearer ${keycloak.token}` },
+        });
+        setUserList(userListRes);
       }
-      
     };
     keycloak.onAuthSuccess = async function () {
       try {
-        await axios.get(`http://friendbook.com/api/usr/self/${keycloak.subject}`, {
-          headers: { Authorization: `Bearer ${keycloak.token}` },
-        });
+        await axios.get(
+          `http://localhost:4000/api/usr/self/${keycloak.subject}`,
+          {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          }
+        );
         setIsCompromised(false);
       } catch (error) {
-        console.log("Users Service compromised")
+        console.log("Users Service compromised");
         setIsCompromised(true);
-      }
-      finally{
-        fetchUsers(isCompromised);
+      } finally {
+        if (keycloak.authenticated) {
+          fetchUsers(isCompromised);
+        }
       }
     };
   });
@@ -104,7 +120,7 @@ const App = () => {
               path="/edit"
               element={
                 <PrivateRoute>
-                  <EditPage user={user} setUser={setUser}/>
+                  <EditPage user={user} setUser={setUser} />
                 </PrivateRoute>
               }
             />

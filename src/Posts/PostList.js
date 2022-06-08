@@ -9,7 +9,10 @@ const PostList = ({ postCounter }) => {
 
   function deletePost(post) {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      axios.delete(`http://friendbook.com/api/msg/${post._id}`);
+      axios.delete(`http://friendbook.com/api/msg/${post._id}`,
+      {
+        headers: { Authorization: `Bearer ${keycloak.token}` },
+      });
       window.location.reload(false);
     }
   }

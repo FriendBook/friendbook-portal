@@ -1,15 +1,16 @@
 import React from "react";
 
 const Users = ({userList, isCompromised}) => {
+  
 
   function render() {
-    if(!isCompromised){
+    if(!isCompromised && !!userList.data){
       return Object.values(userList.data.rows).map((user) => {
         return (
           <div
             className="card"
             style={{ width: "30%", marginBottom: "20px" }}
-            key={user.name}
+            key={user.id}
           >
             <div className="card-body">
               <h3>{user.name}</h3>

@@ -10,7 +10,7 @@ export default function EditPage({user, setUser}) {
   var userCopy = _.cloneDeep(user);
 
   function update() {
-    axios({method: 'put', url: `http://friendbook.com/api/usr/${keycloak.subject}`, data: {name: userCopy.name, bio: userCopy.bio, birthdate: userCopy.birthdate}})
+    axios({method: 'put', url: `http://localhost:4000/api/usr/${keycloak.subject}`, data: {name: userCopy.name, bio: userCopy.bio, birthdate: userCopy.birthdate.split('T')[0]}})
     setUser(userCopy)
   }
 
@@ -28,14 +28,14 @@ export default function EditPage({user, setUser}) {
         <p>Bio:</p>
         <input
           type="text"
-          id="name"
+          id="bio"
           name="input"
           onChange={(e) => userCopy.bio = e.target.value}
         />
         <p>Birth Date:</p>
         <input
           type="text"
-          id="name"
+          id="bdate"
           name="input"
           onChange={(e) => userCopy.birthdate = e.target.value}
         />
