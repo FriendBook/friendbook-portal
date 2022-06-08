@@ -25,7 +25,7 @@ const App = () => {
       //localhost:4000
       if (isCompromised) {
         const frndsres = await axios.get(
-          `http://localhost:8082/api/frnds/${keycloak.subject}`,
+          `http://friendbook.com/api/frnds/${keycloak.subject}`,
           {
             headers: { Authorization: `Bearer ${keycloak.token}` },
           }
@@ -33,7 +33,7 @@ const App = () => {
         setFriends(frndsres.data);
       } else {
         const frndsres = await axios.get(
-          `http://localhost:8082/api/frnds/${keycloak.subject}`,
+          `http://friendbook.com/api/frnds/${keycloak.subject}`,
           {
             headers: { Authorization: `Bearer ${keycloak.token}` },
           }
