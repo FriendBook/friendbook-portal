@@ -28,26 +28,30 @@ const App = () => {
           `http://localhost:8082/api/frnds/${keycloak.subject}`,
           {
             headers: { Authorization: `Bearer ${keycloak.token}` },
-          });
+          }
+        );
         setFriends(frndsres.data);
       } else {
         const frndsres = await axios.get(
           `http://localhost:8082/api/frnds/${keycloak.subject}`,
           {
             headers: { Authorization: `Bearer ${keycloak.token}` },
-          });
+          }
+        );
         setFriends(frndsres.data);
         const userRes = await axios.get(
           `http://localhost:4000/api/usr/${keycloak.subject}`,
           {
             headers: { Authorization: `Bearer ${keycloak.token}` },
-          });
+          }
+        );
         setUser(userRes.data.row[0]);
-        const userListRes = await axios.get("http://localhost:4000/api/usr",
-        {
-          headers: { Authorization: `Bearer ${keycloak.token}` },
-        });
-        setUserList(userListRes);
+        if (keycloak.hasRealmRole("admin")) {
+          const userListRes = await axios.get("http://localhost:4000/api/usr", {
+            headers: { Authorization: `Bearer ${keycloak.token}` },
+          });
+          setUserList(userListRes);
+        }
       }
     };
     keycloak.onAuthSuccess = async function () {

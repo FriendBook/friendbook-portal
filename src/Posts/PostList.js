@@ -9,7 +9,7 @@ const PostList = ({ postCounter }) => {
 
   function deletePost(post) {
     if (window.confirm("Are you sure you want to delete this post?")) {
-      axios.delete(`http://friendbook.com/api/msg/${post._id}`,
+      axios.delete(`http://localhost:8081/api/msg/${post._id}`,
       {
         headers: { Authorization: `Bearer ${keycloak.token}` },
       });
@@ -20,7 +20,7 @@ const PostList = ({ postCounter }) => {
   const fetchPosts = async () => {
     //friendbook.com
     //localhost:8081
-    const res = await axios.get("http://friendbook.com/api/msg");
+    const res = await axios.get("http://localhost:8081/api/msg");
 
     setPosts(res.data);
   };
